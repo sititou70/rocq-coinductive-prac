@@ -1,0 +1,30 @@
+{
+  "name": "rocq-coinductive-prac",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/claude-config,target=/home/rocq/.claude,type=bind"
+  ],
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/rocq/.claude"
+  },
+  "remoteUser": "rocq",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "rocq-prover.vsrocq",
+        "nuriyev.claude-code-katex"
+      ],
+      "settings": {
+        "claudeCode.allowDangerouslySkipPermissions": true,
+        "claudeCode.initialPermissionMode": "bypassPermissions",
+        "vsrocq.path": "/home/rocq/.opam/4.14.2+flambda/bin/vsrocqtop"
+      }
+    }
+  }
+}
